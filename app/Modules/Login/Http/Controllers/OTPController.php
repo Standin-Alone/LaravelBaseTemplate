@@ -42,6 +42,7 @@ class OTPController extends Controller
                 return response()->json( $error_response, 302); 
             }
             elseif($uOTP->otp == $input_otp){
+                // Update OTP status "1" to status "0";
                 $this->otpModel->update_otp_status_to_active($get_uuid);
 
                 $users = $this->roles_and_perms->get_user_session($uOTP->user_id);
@@ -51,14 +52,6 @@ class OTPController extends Controller
 
                     Session::put(['role_no_sets' => $role_no_sets]);
                 // ==========  array of role_no of user(uuid)  ==========
-
-                    
-
-                    
-
-                    
-
-                    
 
                     // USER PROVINCE LIST
                     $user_prov_list = [];
@@ -81,8 +74,6 @@ class OTPController extends Controller
                 Session::put(['provinces_on_region' => $provinces_on_region]);
                 //  ==========  session for list of provinces under base on region
 
-                
-                
                 
                 // ==========  group by program with role  ==========  
 

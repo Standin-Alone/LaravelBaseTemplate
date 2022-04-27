@@ -70,6 +70,14 @@ class Login extends Model
         return $query;
     }
 
+    // get user by email
+    public function get_user_v1($email){
+
+        $query = DB::table("users")->selectRaw('*')->first();
+
+        return $query;
+    }
+
     // find user password by uuid with role
     public function find_user_password($uuid){
         // $query = DB::select('select user_id, email, username, password, password_reset_status from users where user_id = ?', [$uuid]);

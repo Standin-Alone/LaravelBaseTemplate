@@ -6,13 +6,13 @@
 			rules:{
 				otp: {
                 	required: true,
-					maxlength: 4,
+					maxlength: 6,
 				}
 			},
 			messages: {
 				otp: {
 					required:'<div class="text-danger">*The OTP field is required!</div>',
-					maxlength: '<div class="text-danger">*The OTP Pin is only 4 digits!</div>'
+					maxlength: '<div class="text-danger">*The OTP Pin is only 6 digits!</div>'
 				}
 				
 			},
