@@ -44,6 +44,7 @@
 			url: route,
 			data: form_data.serialize(),
 			success: function(otp_mail_success ){
+				console.log(otp_mail_success['uuid']);
 				route = "{{route('otp_page',['uuid'=>':id'])}}".replace(':id', otp_mail_success['uuid']);
 
 				// console.log(route);
@@ -67,9 +68,18 @@
 					$(".btn-log").html('<span id="submit-btn">SIGN ME IN</span>');
 					$('span.error_email_pass').empty();
 					$('#login_form')[0].reset();
-					// append() = Inserts content at the end of the selected elements
-					// stay on the same page and shows error
-					$('span.error_email_pass').append('<div class="alert alert-danger"><span class="close" data-dismiss="alert">×</span>'+error_response.responseJSON['message']+'</div>');
+					Swal.fire({
+						icon: error_response.responseJSON['icon'],
+						title: error_response.responseJSON['message'],
+						showClass: {
+							popup: 'animate__animated animate__fadeInDown'
+						},
+						hideClass: {
+							popup: 'animate__animated animate__fadeOutUp'
+						}
+					}).then(function(){ 
+						window.location.href = "{{ route('user.logout')}} ";
+                    });
 				}, 1500);
 			}
 		});
